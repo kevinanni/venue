@@ -173,6 +173,11 @@ def save_config(token, utc, uuid, sign):
     with open('config.ini', 'w') as configfile:
         config.write(configfile)
 
+    my_token = token
+    my_utc = utc
+    my_uuid = uuid
+    my_sign = sign
+
 
 def test2():
     # data = json.loads(default_post("/venue/venueHomPage", ""))

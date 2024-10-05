@@ -77,22 +77,23 @@ def appointment_page():
 def settings_page():
     st.header("系统设置")
 
-    global my_token, my_utc, my_uuid, my_sign
+    # print(my_token)
+    # global my_token, my_utc, my_uuid, my_sign
     # 显示和编辑 my_token
-    my_token = st.text_input("Token", value=my_token)
+    my_token_value = st.text_input("Token", value=my_token)
 
     # 显示和编辑 my_utc
-    my_utc = st.text_input("UTC", value=my_utc)
+    my_utc_value = st.text_input("UTC", value=my_utc)
 
     # 显示和编辑 my_uuid
-    my_uuid = st.text_input("UUID", value=my_uuid)
+    my_uuid_value = st.text_input("UUID", value=my_uuid)
 
     # 显示和编辑 my_sign
-    my_sign = st.text_input("Sign", value=my_sign)
+    my_sign_value = st.text_input("Sign", value=my_sign)
 
     # 可以添加保存按钮
     if st.button("保存设置"):
-        save_config(my_token, my_utc, my_uuid, my_sign)
+        save_config(my_token_value, my_utc_value, my_uuid_value, my_sign_value)
         st.success("设置已保存！")
 
 
