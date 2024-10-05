@@ -20,7 +20,7 @@ import gzip
 # default_iv = '\1\2\3\4\5\6\7\x08' 失效
 
 # 加载配置文件
-cfg_path = "./config.ini"
+cfg_path = "./config.toml"
 conf = configparser.ConfigParser()
 conf.read(cfg_path, encoding="utf-8")
 
@@ -161,7 +161,7 @@ def extract_hex(data_str):
 
 def save_config(token, utc, uuid, sign):
     config = configparser.ConfigParser()
-    config.read('config.ini')
+    config.read('config.toml')
 
     # Update User section with new values
     config['User']['token'] = token
@@ -170,7 +170,7 @@ def save_config(token, utc, uuid, sign):
     config['User']['sign'] = sign
 
     # Write changes back to the config file
-    with open('config.ini', 'w') as configfile:
+    with open('config.toml', 'w') as configfile:
         config.write(configfile)
 
     my_token = token

@@ -1,7 +1,9 @@
 import configparser
 import streamlit as st
+import importlib
 
-from venue import my_token, my_utc, my_uuid, my_sign, save_config, venueHomPage, submitAppointment
+# from venue import my_token, my_utc, my_uuid, my_sign, save_config, venueHomPage, submitAppointment
+import venue
 
 # # 设置页面标题
 # st.title("欢迎使用预约系统")
@@ -15,7 +17,7 @@ if 'logged_in' not in st.session_state or not st.session_state.logged_in:
     password = st.sidebar.text_input("密码", type="password")
     if st.sidebar.button("登录"):
         config = configparser.ConfigParser()
-        config.read('config.ini')
+        config.read('config.toml')
         if username == config['Login']['user'] and password == config['Login'][
                 'password']:
             st.session_state.logged_in = True
@@ -31,7 +33,7 @@ else:
 def appointment_page():
     st.header("预约场地")
     if st.button("查看场地"):
-        data = venueHomPage()
+        data = venue.venueHomPage()
         st.write(data)
     st.subheader("预约信息")
     # 创建一个字典来存储预约信息
@@ -69,7 +71,7 @@ def appointment_page():
                      ])  # 下拉框选择时间
     }
     if st.button("预约"):
-        re = submitAppointment(sub_data)
+        re = venue.submitAppointment(sub_data)
         st.write(re)
 
 
@@ -77,23 +79,24 @@ def appointment_page():
 def settings_page():
     st.header("系统设置")
 
-    # print(my_token)
+    importlib.reload(venue)
     # global my_token, my_utc, my_uuid, my_sign
     # 显示和编辑 my_token
-    my_token_value = st.text_input("Token", value=my_token)
+    my_token_value = st.text_input("Token", value=venue.my_token)
 
     # 显示和编辑 my_utc
-    my_utc_value = st.text_input("UTC", value=my_utc)
+    my_utc_value = st.text_input("UTC", value=venue.my_utc)
 
     # 显示和编辑 my_uuid
-    my_uuid_value = st.text_input("UUID", value=my_uuid)
+    my_uuid_value = st.text_input("UUID", value=venue.my_uuid)
 
     # 显示和编辑 my_sign
-    my_sign_value = st.text_input("Sign", value=my_sign)
+    my_sign_value = st.text_input("Sign", value=venue.my_sign)
 
     # 可以添加保存按钮
     if st.button("保存设置"):
-        save_config(my_token_value, my_utc_value, my_uuid_value, my_sign_value)
+        venue.save_config(my_token_value, my_utc_value, my_uuid_value,
+                          my_sign_value)
         st.success("设置已保存！")
 
 
