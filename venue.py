@@ -327,14 +327,15 @@ def submitAppointment(sub_data):
     #     "appointmentDate": "2024-10-01",
     #     "selVenueFieldTime": "20:00-21:00"
     # }
-    data = {
-        "venueNumber": sub_data.venueNumber,
-        "phone": sub_data.phone,
-        "areaNumber": sub_data.areaNumber,
-        "appointmentDate": sub_data.appointmentDate,
-        "selVenueFieldTime": sub_data.selVenueFieldTime
-    }
-    j = json.loads(default_post('/venue/submitAppointment', json.dumps(data)))
+    # data = {
+    #     "venueNumber": sub_data.get("venueNumber"),
+    #     "phone": sub_data.get("phone"),
+    #     "areaNumber": sub_data.get("areaNumber"),
+    #     "appointmentDate": sub_data.get("appointmentDate"),
+    #     "selVenueFieldTime": sub_data.get("selVenueFieldTime")
+    # }
+    j = json.loads(
+        default_post('/venue/submitAppointment', json.dumps(sub_data)))
     return j
 
 
