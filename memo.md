@@ -1,3 +1,7 @@
+## 虚拟环境
+python -m venv appenv
+appenv\Scripts\activate
+
 ## 提示词
 ### 框架
 请生成一个简单的Streamlit代码框架，要求：
@@ -23,9 +27,7 @@
 2. 与config.ini中[Login]下的user和password比对
 3. 完全符合进入主页面，否则保持登录页面
 
-## 虚拟环境
-python -m venv appenv
-appenv\Scripts\activate
+
 
 ## 抓包
 ### 获取信息
